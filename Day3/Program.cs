@@ -3,7 +3,7 @@ using static Utils.Program;
 
 namespace Day3
 {
-    internal class Program
+    internal static class Program
     {
         private static void Main(string[] args)
         {
