@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security;
-using Utils;
+using static Utils.Program;
 
 namespace Day2
 {
@@ -14,7 +14,7 @@ namespace Day2
             List<int> horizontalChanges = new List<int>();
             List<int> verticalChanges = new List<int>();
 
-            Utils.Program.ForEachInputLine(input =>
+            ForEachInputLine(input =>
             {
                 string[] words = input.Split(' ');
                 string direction = words[0];
