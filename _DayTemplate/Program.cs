@@ -10,13 +10,13 @@ namespace _DayTemplate
             // Read input
             ForEachInputLine(input =>
             {
-                // Do stuff with input
+                // TODO Do stuff with input
             });
             
-            // Do stuff for part 1
+            // TODO Do stuff for part 1
             Console.WriteLine($"");
             
-            // Do stuff for part 2
+            // TODO Do stuff for part 2
             Console.WriteLine($"");
         }
     }
