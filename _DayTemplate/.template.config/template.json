@@ -1,0 +1,28 @@
+{
+  "author": "Sindarin27",
+  "name": "AOC day template",
+  "description": "My template for a day solution for AOC",
+  "identity": "Sindarin27.AOC.1.0",
+  "shortName": "daytemplate",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "_DayTemplate",
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "netcoreapp4.0"
+        },
+        {
+          "choice": "netcoreapp5.0"
+        }
+      ],
+      "defaultValue": "netcoreapp5.0"
+    }
+  }
+}
