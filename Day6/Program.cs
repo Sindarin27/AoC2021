@@ -13,7 +13,7 @@ namespace Day6
             long[] fishes = ReadInitialFish();
             long fishesOnDay7 = 0, fishesOnDay8 = 0;
 
-            for (int day = 0; day < 256; day++)
+            for (int day = 0; ; day++)
             {
                 long fishesOnDay6 = fishesOnDay7;
                 fishesOnDay7 = fishesOnDay8;
@@ -21,10 +21,20 @@ namespace Day6
                 fishes[day % 7] += fishesOnDay6;
                 // Print answer to part 1
                 if (day == 79) Console.WriteLine($"On day 80, there are {fishes.Sum() + fishesOnDay7 + fishesOnDay8} fish in total");
-
+                if (day == 255) Console.WriteLine($"After 256 days, there are a  whopping {fishes.Sum() + fishesOnDay7 + fishesOnDay8} fish in total!");
+                if (day > 255)
+                {
+                    try
+                    {
+                        long fishesInTotal = fishes.Sum() + fishesOnDay7 + fishesOnDay8;
+                    }
+                    catch (System.OverflowException)
+                    {
+                        Console.WriteLine($"The sea is overflowing with fish on day {day}!");
+                        return;
+                    }
+                }
             }
-            
-            Console.WriteLine($"After 256 days, there are a  whopping {fishes.Sum() + fishesOnDay7 + fishesOnDay8} fish in total!");
         }
 
         private static long[] ReadInitialFish()
