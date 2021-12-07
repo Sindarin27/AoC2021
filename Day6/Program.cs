@@ -21,7 +21,9 @@ namespace Day6
                 fishes[day % 7] += fishesOnDay6;
                 // Print answer to part 1
                 if (day == 79) Console.WriteLine($"On day 80, there are {fishes.Sum() + fishesOnDay7 + fishesOnDay8} fish in total");
+                // Print answer to part 2
                 if (day == 255) Console.WriteLine($"After 256 days, there are a  whopping {fishes.Sum() + fishesOnDay7 + fishesOnDay8} fish in total!");
+                // Just for fun, see when the amount of fish overflows
                 if (day > 255)
                 {
                     try
