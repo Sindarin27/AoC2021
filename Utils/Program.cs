@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Utils
 {
@@ -30,6 +31,27 @@ namespace Utils
                 state = next(state, item);
                 yield return state;
             }
+        }
+        
+        public static IEnumerable<T> ReadCommaSeparated<T>(Func<string,T> parser)
+        {
+            return Console.ReadLine()!.Split(',').Select(parser);
+        }
+        
+        public static int[] ReadCommaSeparatedCounts()
+        {
+            return ListToCounts(ReadCommaSeparated(int.Parse).ToList());
+        }
+
+        public static int[] ListToCounts(List<int> list)
+        {
+            int[] counts = new int[list.Max()];
+            foreach (int item in list)
+            {
+                counts[item]++;
+            }
+
+            return counts;
         }
     }
 }
