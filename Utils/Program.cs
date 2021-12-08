@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 
 namespace Utils
@@ -25,6 +26,7 @@ namespace Utils
             }
         }
         
+        [Pure]
         public static IEnumerable<U> Scan<T, U>(this IEnumerable<T> input, Func<U, T, U> next, U state) {
             yield return state;
             foreach(T item in input) {
@@ -38,11 +40,13 @@ namespace Utils
             return Console.ReadLine()!.Split(',').Select(parser);
         }
         
+        [Pure]
         public static int[] ReadCommaSeparatedCounts()
         {
             return ListToCounts(ReadCommaSeparated(int.Parse).ToList());
         }
 
+        [Pure]
         public static int[] ListToCounts(List<int> list)
         {
             int[] counts = new int[list.Max()];
