@@ -42,16 +42,16 @@ namespace Day10
 
             // Print score
             Console.WriteLine($"Score of non-matching brackets: {syntaxScore}!");
-
-            // Filter away invalid lines
-            List<string> uncompleted = strings.Where(input => CalculateSyntaxScore(input, closing, openingToClosing, invalidClosingToScore) == 0).ToList();
             
-            // Perform auto complete in the same way, save all scores
-            List<int> autocompleteScores = uncompleted.Select(input => CalculateAutoCompleteScore(input, closing, uncompletedOpeningToScore)).ToList();
+            // Perform auto complete in the same way (but only on the lines with a valid syntax), save all scores
+            List<long> autocompleteScores = strings
+                .Where(input => CalculateSyntaxScore(input, closing, openingToClosing, invalidClosingToScore) == 0)
+                .Select(input => CalculateAutoCompleteScore(input, closing, uncompletedOpeningToScore))
+                .ToList();
             
             // Find and print median score
             autocompleteScores.Sort();
-            int autocompleteScore =  autocompleteScores[autocompleteScores.Count / 2];
+            long autocompleteScore =  autocompleteScores[autocompleteScores.Count / 2];
             Console.WriteLine($"Score of uncompleted brackets: {autocompleteScore}!");
         }
 
@@ -74,7 +74,8 @@ namespace Day10
 
             return 0;
         }
-        private static int CalculateAutoCompleteScore(string input, IReadOnlySet<char> closing, IReadOnlyDictionary<char, int> uncompletedOpeningToScore)
+        
+        private static long CalculateAutoCompleteScore(string input, IReadOnlySet<char> closing, IReadOnlyDictionary<char, int> uncompletedOpeningToScore)
         {
             Stack<char> openingBrackets = new();
             foreach (char c in input)
@@ -90,7 +91,7 @@ namespace Day10
                 }
             }
 
-            int score = 0;
+            long score = 0;
             while (openingBrackets.Count > 0)
             {
                 char uncompletedOpening = openingBrackets.Pop();
