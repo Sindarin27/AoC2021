@@ -114,5 +114,26 @@ namespace Utils
         {
             return x < 0 || x >= array.GetLength(0) || y < 0 || y >= array.GetLength(1);
         }
+
+        /// <summary>
+        /// If the key exists in the dictionary, return the associated value.
+        /// Otherwise, create the value using the provided method, insert into the dictionary, and return the value.
+        /// </summary>
+        /// <param name="dictionary">Dictionary to search and insert into</param>
+        /// <param name="key">Key to find or insert at</param>
+        /// <param name="valueGenerator">Method to create a value if none exists</param>
+        /// <typeparam name="T">Type of index in dictionary</typeparam>
+        /// <typeparam name="U">Type of value in dictionary</typeparam>
+        /// <returns>Value associated with the key in the dictionary</returns>
+        public static U GetOrCreate<T, U>(this IDictionary<T, U> dictionary, T key, Func<U> valueGenerator)
+        {
+            if (dictionary.ContainsKey(key)) return dictionary[key];
+            else
+            {
+                U value = valueGenerator();
+                dictionary.Add(key, value);
+                return value;
+            }
+        }
     }
 }
