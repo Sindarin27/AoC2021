@@ -135,5 +135,18 @@ namespace Utils
                 return value;
             }
         }
+
+        /// <summary>
+        /// Run the trace function on the element and return the element itself
+        /// </summary>
+        /// <param name="element">Element to run function on and return</param>
+        /// <param name="trace">Function to run on element</param>
+        /// <typeparam name="T">Type of element</typeparam>
+        /// <returns>Element</returns>
+        public static T Trace<T>(this T element, Action<T> trace)
+        {
+            trace(element);
+            return element;
+        }
     }
 }
