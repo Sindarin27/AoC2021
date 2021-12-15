@@ -191,5 +191,20 @@ namespace Utils
         /// <typeparam name="T">Type of element</typeparam>
         /// <returns>Input</returns>
         [Pure] public static T Id<T>(T element) { return element; }
+
+
+        /// <summary>
+        /// It is common to read a "map" of bytes in AOC challenges. This method reads every character one by one,
+        /// line by line, until it reaches the end. It will then create a 2D array of bytes based on the numbers in
+        /// the input.
+        /// </summary>
+        /// <returns>2D array of the input</returns>
+        public static byte[,] ReadMap()
+        {
+            return CreateRectangularArray(ForEachInputLine(input =>
+            {
+                return input.ToCharArray().Select(x => byte.Parse(x.ToString())).ToArray();
+            }).ToList());
+        } 
     }
 }
