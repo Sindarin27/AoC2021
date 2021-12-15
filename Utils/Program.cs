@@ -137,6 +137,41 @@ namespace Utils
         }
 
         /// <summary>
+        /// If the key exists in the dictionary, increment by given value.
+        /// Otherwise, create key in dictionary with given value.
+        /// </summary>
+        public static void IncrementOrCreate<T>(this IDictionary<T, long> dictionary, T key, long amount)
+        {
+            if (dictionary.ContainsKey(key)) dictionary[key] += amount;
+            else dictionary.Add(key, amount);
+        }
+
+        /// <summary>
+        /// If the key exists in the dictionary, increment by given value.
+        /// Otherwise, create key in dictionary with given value.
+        /// </summary>
+        public static void IncrementOrCreate<T>(this IDictionary<T, int> dictionary, T key, int amount)
+        {
+            if (dictionary.ContainsKey(key)) dictionary[key] += amount;
+            else dictionary.Add(key, amount);
+        }
+        
+        /// <summary>
+        /// Create a reverse lookup version of the given dictionary
+        /// From: https://stackoverflow.com/a/22595707
+        /// </summary>
+        public static Dictionary<TValue, TKey> CreateReverseLookup<TKey, TValue>(this IDictionary<TKey, TValue> source)
+        {
+            Dictionary<TValue, TKey> dictionary = new Dictionary<TValue, TKey>();
+            foreach ((TKey key, TValue value) in source)
+            {
+                if(!dictionary.ContainsKey(value))
+                    dictionary.Add(value, key);
+            }
+            return dictionary;
+        } 
+
+        /// <summary>
         /// Run the trace function on the element and return the element itself
         /// </summary>
         /// <param name="element">Element to run function on and return</param>
@@ -148,5 +183,13 @@ namespace Utils
             trace(element);
             return element;
         }
+
+        /// <summary>
+        /// Returns itself
+        /// </summary>
+        /// <param name="element">Element to return</param>
+        /// <typeparam name="T">Type of element</typeparam>
+        /// <returns>Input</returns>
+        [Pure] public static T Id<T>(T element) { return element; }
     }
 }
