@@ -16,7 +16,7 @@
       "datatype": "choice",
       "choices": [
         {
-          "choice": "netcoreapp4.0"
+          "choice": "netcoreapp6.0"
         },
         {
           "choice": "netcoreapp5.0"
